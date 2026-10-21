@@ -14,7 +14,7 @@ def is_prime(n: int) -> bool:
     """
     if n < 2:
         return False
-    for d in range(2, int(n ** 0.5) + 1):
+    for d in range(2, int(n**0.5) + 1):
         if n % d == 0:
             return False
     return True
@@ -40,8 +40,8 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     >>> multiplicative_inverse(7, 40)
     23
     """
-    a,b = e, phi
-    x0, x1 = 1,0
+    a, b = e, phi
+    x0, x1 = 1, 0
     while b != 0:
         q = a // b
         a, b = b, a % b
@@ -59,7 +59,7 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
     n = p * q
 
     # phi = (p-1)(q-1)
-    phi = (p-1) * (q-1)
+    phi = (p - 1) * (q - 1)
 
     # Choose an integer e such that e and phi(n) are coprime
     e = random.randrange(1, phi)
@@ -92,7 +92,7 @@ def decrypt(pk: tp.Tuple[int, int], ciphertext: tp.List[int]) -> str:
     # Unpack the key into its components
     key, n = pk
     # Generate the plaintext based on the ciphertext and key using a^b mod m
-    plain = [chr((char ** key) % n) for char in ciphertext]
+    plain = [chr((char**key) % n) for char in ciphertext]
     # Return the array of bytes as a string
     return "".join(plain)
 
